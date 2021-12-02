@@ -34,17 +34,19 @@ class Drawing extends DrawingCommon {
         {
             u_ambient: {value: new THREE.Color( num!.valueAsNumber, num!.valueAsNumber, num!.valueAsNumber)},
             u_color: {value: new THREE.Color( 0xdd2200 )},
-            u_colorTexture: {value: null} 
+            u_colorTexture: {value: null},
         },
         {
             u_ambient: {value: new THREE.Color( num!.valueAsNumber, num!.valueAsNumber, num!.valueAsNumber)},
             u_color: {value: new THREE.Color( 0xdd2200 )},
-            u_colorTexture: {value: null} 
+            u_colorTexture: {value: null},
+            u_diameter: {value: num!.valueAsNumber}
         },
         {
             u_ambient: {value: new THREE.Color( num!.valueAsNumber, num!.valueAsNumber, num!.valueAsNumber)},
             u_color: {value: new THREE.Color( 0xdd2200 )},
-            u_colorTexture: {value: null} 
+            u_colorTexture: {value: null},
+            u_time: {value: 0}
         },
         {
             u_ambient: {value: new THREE.Color( num!.valueAsNumber, num!.valueAsNumber, num!.valueAsNumber)},
@@ -60,7 +62,7 @@ class Drawing extends DrawingCommon {
         // we're going to actually wait for everything to load before setting up scene.
         // there are 3 files per shader
         var numFilesLeft = this.vertexFiles.length * 3;
-  
+
         // set up the DOM UI callbacks
         this.setupCallbacks();
 
@@ -136,11 +138,13 @@ class Drawing extends DrawingCommon {
           case 1:
             this.uniforms[1].u_color.value.offsetHSL( 0.005, 0, 0 );
             this.uniforms[1].u_ambient.value.setScalar(num!.valueAsNumber)
+            this.uniforms[1].u_diameter.value = num!.valueAsNumber;
             break;
 
           case 2:
             this.uniforms[2].u_color.value.offsetHSL( 0.005, 0, 0 );
             this.uniforms[2].u_ambient.value.setScalar(num!.valueAsNumber)
+            this.uniforms[2].u_time.value = time;
             break;
 
           case 3:
